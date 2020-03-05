@@ -69,7 +69,7 @@ class Relation:
             closure_until_now = closure.union(new_relations)
             if closure_until_now == closure:
                 break
-            closure = closure_until_now 
+            closure = closure_until_now
         return closure
 
 
@@ -122,3 +122,40 @@ print('r=', r.relation)
 print('p=', p.relation)
 q = r.substraction(p)
 print('q = r U p = ', q.relation, ' M = ', q.set, '\n')
+
+print("-------INVERSE---------")
+print('p=', p.relation)
+print(type(p))
+q = p.inverse()
+print('q = p.inverse=', q.relation, ' M = ', q.set, '\n')
+
+print("-------COMPOSITION---------")
+print('p= ', p.relation)
+print('q= ', q.relation)
+q = p.composition(q)
+print('q = p composed with q', q.relation,  '\n')
+print(p.set)
+
+print("-------isReflexive---------")
+print('p=', p.relation, ' set> ', p.set, ' isReflexive? ', p.isReflexive())
+a = Relation({1,2})
+a = a.add((1,1))
+a = a.add((2,2))
+a = a.add((1,2))
+print('a=', a.relation, ' set> ', a.set, ' isReflexive? ', a.isReflexive())
+print('empty e=', e.relation, ' set> ', e.set, ' isReflexive? ', e.isReflexive(), '\n')
+
+print("-------isSymmetric---------")
+print('p=', p.relation, ' set> ', p.set, ' isSymmetric? ', p.isSymmetric())
+print('a=', a.relation, ' set> ', a.set, ' isSymmetric? ', a.isSymmetric())
+a=a.add((2,1))
+print('a=', a.relation, ' set> ', a.set, ' isSymmetric? ', a.isSymmetric())
+print('empty e=', e.relation, ' set> ', e.set, ' isSymmetric? ', e.isSymmetric(), '\n')
+
+
+print("-------isTransitive---------")
+print(p.relation, ' set> ', p.set, ' isTRansitive? ', p.isTransitive())
+print('a=', a.relation, ' set> ', a.set, ' isTRansitive? ', a.isTransitive())
+a=a.remove((1,1))
+print('a=', a.relation, ' set> ', a.set, ' isTRansitive? ', a.isTransitive())
+print('empty e=', e.relation, ' set> ', e.set, ' isTRansitive? ', e.isTransitive(), '\n')
