@@ -29,7 +29,51 @@ class Relation:
     def substraction(self, rel):
         return Relation(self.set, self.relation.difference(rel.relation))
 
-############ TESTING ##############
+    def inverse(self):
+        result = set()
+        for a, b in self.relation:
+            result.add((b, a))
+        return Relation(self.set, result)
+
+    def composition(self, rel):
+        result = set()
+        for a, b in self.relation:
+            for c, d in rel.relation:
+                if (b == c): result.add((a, d))
+        return Relation(self.set.union(rel.set), result)
+
+    def isReflexive(self):
+        for i in self.set:
+            # if (i,i) not in self.relation: return False
+            if not self.relation.__contains__((i, i)): return False
+        return True
+
+    def isSymmetric(self):
+        for a, b in self.relation:
+            if not self.relation.__contains__((b, a)): return False
+        return True
+
+    def isTransitive(self):
+        for a, b in self.relation:
+            for c, d in self.relation:
+                if (b == c) and not self.relation.__contains__((a, d)): return False
+        return True
+
+    def R_F_Closure(self):
+        closure = set()
+        for i in self.set:
+            closure = closure.add((i, i))
+            closure = closure.union(self.relation)
+        while True:
+            new_relations = set((x, w) for x, y in closure for q, w in closure if q == y)
+            closure_until_now = closure.union(new_relations)
+            if closure_until_now == closure:
+                break
+            closure = closure_until_now 
+        return closure
+
+
+######################## TESTING ########################
 
 print("---Initializing, contains, add, remove---")
 
