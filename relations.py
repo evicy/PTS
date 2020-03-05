@@ -71,6 +71,8 @@ class Relation:
             closure = closure_until_now
         return closure
 
+def get_relation_class(M):
+    return Relation(M)
 
 ######################## TESTING ########################
 
@@ -160,3 +162,7 @@ print('a=', a.relation, ' set> ', a.set, ' isTRansitive? ', a.isTransitive())
 a=a.remove((1,1))
 print('a=', a.relation, ' set> ', a.set, ' isTRansitive? ', a.isTransitive())
 print('empty e=', e.relation, ' set> ', e.set, ' isTRansitive? ', e.isTransitive(), '\n')
+
+M = {5,10,15,20}
+rel = get_relation_class(M)
+print('rel relation = ', rel.relation, ' set> ', rel.set, '\n')
