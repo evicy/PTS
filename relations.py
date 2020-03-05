@@ -6,16 +6,16 @@ class Relation:
         self.relation = pset(relation)
 
     def __contains__(self, item):
-        return self.relation.__contains__(item)
+        return item in self.relation
 
     def add(self, item):
-        if (self.set.__contains__(item[0])) and (self.set.__contains__(item[1])):
+        if (item[0] in self.set) and (item[1] in self.set):
             return Relation(self.set, self.relation.add(item))
         else:
             return self
 
     def remove(self, item):
-        if self.relation.__contains__(item):
+        if item in self.relation:
             return Relation(self.set, self.relation.remove(item))
         else:
             return self
@@ -44,19 +44,18 @@ class Relation:
 
     def isReflexive(self):
         for i in self.set:
-            # if (i,i) not in self.relation: return False
-            if not self.relation.__contains__((i, i)): return False
+            if (i,i) not in self.relation: return False
         return True
 
     def isSymmetric(self):
         for a, b in self.relation:
-            if not self.relation.__contains__((b, a)): return False
+            if (b,a) not in self.relation: return False
         return True
 
     def isTransitive(self):
         for a, b in self.relation:
             for c, d in self.relation:
-                if (b == c) and not self.relation.__contains__((a, d)): return False
+                if (b == c) and ((a,d) not in self.relation): return False
         return True
 
     def R_F_Closure(self):
@@ -93,8 +92,10 @@ print(r.relation)
 r = r.remove((5, 3))
 print('r after removing (5,3) ', r.relation)
 
+print('Contains (1,3)? ', r.__contains__((1,3)))
 r = r.remove((1,3))
 print('r after removing (1,3) ', r.relation)
+print('Contains (1,3)? ', r.__contains__((1,3)))
 
 p = Relation({2, 3, 4})
 p = p.add((2, 3))
