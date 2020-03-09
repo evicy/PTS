@@ -1,4 +1,4 @@
-from relations import get_relation_class
+from functions import get_relation_class
 from relations import Relation
 
 print("---Test for get_relation_class---")

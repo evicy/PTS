@@ -70,6 +70,3 @@ class Relation:
                 break
             closure = closure_until_now
         return closure
-
-def get_relation_class(M):
-    return Relation(M)
