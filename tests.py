@@ -95,3 +95,8 @@ print('a=', a.relation, ' set> ', a.set, ' isTRansitive? ', a.isTransitive())
 a=a.remove((1,1))
 print('a=', a.relation, ' set> ', a.set, ' isTRansitive? ', a.isTransitive())
 print('empty e=', e.relation, ' set> ', e.set, ' isTRansitive? ', e.isTransitive(), '\n')
+
+print("-------R_F_Closure---------")
+print(p.relation, ' set> ', p.set)
+q = p.R_F_Closure()
+print('q = p.R_F_Closure() : ', q.relation, ' M = ', q.set, '\n')
