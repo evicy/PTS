@@ -1,4 +1,5 @@
 from pyrsistent import *
+import warnings
 
 class Relation:
     def __init__(self, M, relation=s()):
@@ -12,19 +13,25 @@ class Relation:
         if (item[0] in self.set) and (item[1] in self.set):
             return Relation(self.set, self.relation.add(item))
         else:
+            warnings.warn("Couldn't add, element is not in the set of the relation")
             return self
 
     def remove(self, item):
         if item in self.relation:
             return Relation(self.set, self.relation.remove(item))
         else:
+            warnings.warn("Couldn't remove, element is not in the set of the relation")
             return self
 
     def union(self, rel):
-        return Relation(self.set.union(rel.set), self.relation.union(rel.relation))
+        if self.set == rel.set:
+            return Relation(self.set.union(rel.set), self.relation.union(rel.relation))
+        else:
+            warnings.warn("Couldn't unify, relations are not on the same set")
+            return self
 
     def intersection(self, rel):
-        return Relation(self.set.intersection(rel.set), self.relation.intersection(rel.relation))
+        return Relation(self.set, self.relation.intersection(rel.relation))
 
     def substraction(self, rel):
         return Relation(self.set, self.relation.difference(rel.relation))
