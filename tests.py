@@ -44,6 +44,14 @@ print('p=', p.relation)
 q = r.union(p)
 print('q = r U p = ', q.relation, ' M = ', q.set, '\n')
 
+t = Relation({2, 3, 4})
+u = Relation({2, 3, 4})
+t=t.add((2,3))
+u=u.add((2,4))
+q = t.union(u)
+print('q = t U u = ', q.relation, ' M = ', q.set, '\n')
+
+
 print("----INTERSECTION----")
 print('r=', r.relation)
 print('p=', p.relation)
