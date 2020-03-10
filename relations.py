@@ -20,7 +20,6 @@ class Relation:
         if item in self.relation:
             return Relation(self.set, self.relation.remove(item))
         else:
-            warnings.warn("Couldn't remove, element is not in the set of the relation")
             return self
 
     def union(self, rel):
