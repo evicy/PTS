@@ -1,17 +1,15 @@
-from functions import get_relation_class
-from relations import Relation
+from relations import get_relation_class
 
 print("---Test for get_relation_class---")
-
 M = {5,10,15,20}
 rel = get_relation_class(M)
-print('rel is: ', rel, ' rel relation = ', rel.relation, ' rel.set = ', rel.set, '\n')
-
+print('rel is: ', rel, ' rel.set = ', rel.set, '\n')
 
 print("---Tests for Relation class---")
 print("---Initializing, contains, add, remove---")
 
-r = Relation({1, 2, 3})
+rel = get_relation_class({1, 2, 3})
+r = rel()
 print(r.__contains__(1))
 print(r.relation)
 
@@ -32,7 +30,8 @@ r = r.remove((1,3))
 print('r after removing (1,3) ', r.relation)
 print('Contains (1,3)? ', r.__contains__((1,3)))
 
-p = Relation({2, 3, 4})
+rel = get_relation_class({2, 3, 4})
+p = rel()
 p = p.add((2, 3))
 p = p.add((3, 4))
 print('p: ', p.relation,'\n')
@@ -44,8 +43,11 @@ print('p=', p.relation)
 q = r.union(p)
 print('q = r U p = ', q.relation, ' M = ', q.set, '\n')
 
-t = Relation({2, 3, 4})
-u = Relation({2, 3, 4})
+rel1 = get_relation_class({2, 3, 4})
+rel2 = get_relation_class({2, 3, 4})
+
+t = rel()
+u = rel()
 t=t.add((2,3))
 u=u.add((2,4))
 q = t.union(u)
@@ -57,7 +59,9 @@ print('r=', r.relation)
 print('p=', p.relation)
 q = r.intersection(p)
 print('q = r intersect p=', q.relation, ' M = ', q.set)
-e = Relation({1,2,3,4,5,6})
+
+rel = get_relation_class({1,2,3,4,5,6})
+e = rel()
 q = r.intersection(e)
 print('q = r intersect with empty ', q.relation, ' M = ', q.set, '\n')
 
@@ -82,7 +86,9 @@ print(p.set)
 
 print("-------isReflexive---------")
 print('p=', p.relation, ' set> ', p.set, ' isReflexive? ', p.isReflexive())
-a = Relation({1,2})
+
+rel = get_relation_class({1,2})
+a = rel()
 a = a.add((1,1))
 a = a.add((2,2))
 a = a.add((1,2))
